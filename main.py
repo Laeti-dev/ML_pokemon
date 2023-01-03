@@ -107,3 +107,6 @@ corr = newPokedex.loc[:, ['TYPE_1', 'POINTS_DE_VIE', 'POINTS_ATTAQUE',
 #             annot=True)
 # plt.show()
 
+# SAVE DF
+dataset = newPokedex
+dataset.to_csv('data/dataset.csv', sep='\t')
