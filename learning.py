@@ -74,3 +74,8 @@ precision = r2_score(y_VALIDATION, predictions)
 print('-----------RANDOM FOREST--------------')
 print('Precision = ' +str(precision))
 print('------------------------------------------')
+
+# save training model
+from joblib import dump
+file = './model/pokemon_model.mod'
+dump(algorithm, file)
