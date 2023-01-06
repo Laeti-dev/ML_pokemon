@@ -22,7 +22,7 @@ print(y)
 
 # create learning and test sets
 from sklearn.model_selection import train_test_split
-X_LEARNING, X_VALIDATION, y_LEARNING, y_VALIDATION = train_test_split(X,y, test_size=0.2, random_state=0)
+X_TRAINING, X_VALIDATION, y_TRAINING, y_VALIDATION = train_test_split(X,y, test_size=0.2, random_state=0)
 # test_size = 0.2 is to set 20% of our observation for tests
 # since we have many predictive variables for one prediction => multiple linear regression
 
@@ -33,8 +33,8 @@ from sklearn.linear_model import LinearRegression
 # algorithm choice:
 algorithm = LinearRegression()
 
-# Learning thanks to fit function on learning set
-algorithm.fit(X_LEARNING, y_LEARNING)
+# Training thanks to fit function on learning set
+algorithm.fit(X_TRAINING, y_TRAINING)
 
 # Prediction on test set (VALIDATION)
 predictions = algorithm.predict(X_VALIDATION)
@@ -43,4 +43,34 @@ predictions = algorithm.predict(X_VALIDATION)
 # and expected values (y_VALIDATION)
 precision = r2_score(y_VALIDATION, predictions)
 
-print('Precision =' +str(precision))
+print('-----------LINEAR REGRESSION--------------')
+print('Precision = ' +str(precision))
+print('------------------------------------------')
+
+# DECISION TREE
+from sklearn.tree import  DecisionTreeRegressor
+algorithm = DecisionTreeRegressor()
+
+algorithm.fit(X_TRAINING, y_TRAINING)
+
+predictions = algorithm.predict(X_VALIDATION)
+
+precision = r2_score(y_VALIDATION, predictions)
+
+print('-----------DECISION TREE--------------')
+print('Precision = ' +str(precision))
+print('------------------------------------------')
+
+# RANDOM FOREST
+from sklearn.ensemble import  RandomForestRegressor
+algorithm = RandomForestRegressor()
+
+algorithm.fit(X_TRAINING, y_TRAINING)
+
+predictions = algorithm.predict(X_VALIDATION)
+
+precision = r2_score(y_VALIDATION, predictions)
+
+print('-----------RANDOM FOREST--------------')
+print('Precision = ' +str(precision))
+print('------------------------------------------')
